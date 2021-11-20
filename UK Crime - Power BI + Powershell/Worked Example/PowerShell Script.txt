@@ -1,0 +1,9 @@
+#Specify the directory that has all the sub-directories to be looped
+$maindir = 'C:\Users\j_b\Downloads\cef7db48affb3b48dea997715656995c525cf408\'
+#Specify location and name of file to hold the merged output
+$outputfile = 'C:\Users\j_b\Desktop\output.csv'
+#Specify location of header CSV
+$headerfile = 'C:\Users\j_b\Desktop\Header.csv'
+
+#Loop over the main directory, and specify the wildcard (to replace the dynamic YYYY-MM part) followed by the static "metropolitan-street.csv" part. The first line of each file is going to be skipped.
+Get-ChildItem $maindir -Include *metropolitan-street.csv -Recurse | Get-Content | where {$_.readcount -lt 1 -or $_.readcount -gt 1} | Set-Content $outputfile 
